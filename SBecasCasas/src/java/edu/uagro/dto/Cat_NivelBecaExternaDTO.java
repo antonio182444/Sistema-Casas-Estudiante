@@ -1,9 +1,8 @@
 package edu.uagro.dto;
 
-public class Cat_ZonasDTO {
+public class Cat_NivelBecaExternaDTO {
     private int id;
     private String nombre;
-    private String descripcion;
 
     public int getId() {
         return id;
@@ -20,14 +19,5 @@ public class Cat_ZonasDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-        
     
 }

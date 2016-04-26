@@ -1,0 +1,59 @@
+package edu.uagro.dto;
+
+public class Tbl_ArchivosDTO {
+    private String id;
+    private int tbl_expedientecasaIdDTO;
+    private String nombre;
+    private String extencion;
+    private String url;
+    private String descripcion;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getTbl_expedientecasaIdDTO() {
+        return tbl_expedientecasaIdDTO;
+    }
+
+    public void setTbl_expedientecasaIdDTO(int tbl_expedientecasaIdDTO) {
+        this.tbl_expedientecasaIdDTO = tbl_expedientecasaIdDTO;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getExtencion() {
+        return extencion;
+    }
+
+    public void setExtencion(String extencion) {
+        this.extencion = extencion;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+}

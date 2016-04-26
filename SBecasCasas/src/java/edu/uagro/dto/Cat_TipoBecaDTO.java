@@ -1,8 +1,9 @@
 package edu.uagro.dto;
 
-public class Cat_ZonasDTO {
+public class Cat_TipoBecaDTO {
     private int id;
     private String nombre;
+    private int nivelMaximo;
     private String descripcion;
 
     public int getId() {
@@ -21,6 +22,14 @@ public class Cat_ZonasDTO {
         this.nombre = nombre;
     }
 
+    public int getNivelMaximo() {
+        return nivelMaximo;
+    }
+
+    public void setNivelMaximo(int nivelMaximo) {
+        this.nivelMaximo = nivelMaximo;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -28,6 +37,5 @@ public class Cat_ZonasDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-        
     
 }
