@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <h:outputStylesheet name="css/bootstrap-combobox.css"/>
+        <h:outputStylesheet name="css/dashboard.css"/>
+        <style>
+
+            #menu ul{
+                background: #2F406A;
+                height: 100%;
+                margin-bottom: 0px;
+            }
+            .color{
+                color: white;
+                font-size: 14px;
+            }
+            .error{
+                color: red;
+            }
+        </style>
+        <title>ProyectosUAGro</title>
+    </h:head>
+
+    <h:body>
+
+        <nav class="navbar-fixed-top">
+            <div class="container-fluid">
+                <img class="img-responsive" src="../resources/img/encab.png" alt="Header Image"/>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <h:form>
+                    <div class="col-sm-3 col-md-2 sidebar">
+                        <ul class="nav nav-sidebar">
+                            <li><h:link class="color" value="Inicio" outcome="/app/inicio" /></li>
+                            <br/>
+                            <ul class="nav nav-list">
+                                <li class="nav-header"  data-toggle="collapse" data-target="#test"> <a class="color">
+                                        Proyectos
+                                        <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav nav-list collapse" id="test">
+                                        <li><h:link class="color" style="padding-left: 45px;" value="Medio Superior" outcome="/app/medioSuperiorProyecto.xhtml"/>
+                                        </li>
+                                        <li><h:link class="color" style="padding-left: 45px;" value="Superior" outcome="/app/superiorProyecto.xhtml"/>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <br/>
+                            <li><h:link class="color" value="Reportes" outcome="/app/inicio" /></li>
+                            <br/>
+                            <li><h:link class="color" value="Ayuda..." outcome="/app/inicio" /></li>
+                            <br/>
+                            <ul class="nav nav-list">
+                                <li class="nav-header"  data-toggle="collapse" data-target="#user"> <a class="color">
+                                        Usuario
+                                        <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav nav-list collapse" id="user">
+                                        <li><h:commandLink class="color" style="padding-left: 45px;" value="Cerrar Session" action="#{logOut.logOut()}"/>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+
+                </h:form>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <div id="page-content-wrapper">
+                        <div id="content">
+                            <ui:insert name="content">Content</ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar-fixed-bottom">
+            <div class="container-fluid" >
+                <img class="img-responsive" src="../resources/img/pie.png" alt="Footer Image"/>
+            </div>
+        </nav>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h:outputScript name="jquery/jquery.min.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
+
+    </h:body>
+
+</html>
