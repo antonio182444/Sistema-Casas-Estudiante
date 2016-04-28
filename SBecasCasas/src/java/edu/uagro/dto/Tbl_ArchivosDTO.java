@@ -1,18 +1,18 @@
 package edu.uagro.dto;
 
 public class Tbl_ArchivosDTO {
-    private String id;
+    private int id;
     private int tbl_expedientecasaIdDTO;
     private String nombre;
     private String extencion;
     private String url;
     private String descripcion;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
