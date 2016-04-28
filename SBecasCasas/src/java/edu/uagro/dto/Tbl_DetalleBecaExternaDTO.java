@@ -1,11 +1,13 @@
 package edu.uagro.dto;
 
 public class Tbl_DetalleBecaExternaDTO {
-  private int id;
-  private int cat_anioIdDTO;
-  private int cat_tipobecaexternaIdDTO;
-  private String unidadAcademicaNombre;
-  private int cantidad;
+
+    private int id;
+    private int cat_anioIdDTO;
+    private int cat_tipobecaexternaIdDTO;
+    private String unidadAcademicaNombre;
+    private int cantidad;
+    private int estado;
 
     public int getId() {
         return id;
@@ -46,5 +48,13 @@ public class Tbl_DetalleBecaExternaDTO {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-  
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
 }
