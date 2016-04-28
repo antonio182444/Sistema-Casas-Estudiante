@@ -1,5 +1,6 @@
 package edu.uagro.util;
 
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class Utilerias {
@@ -30,7 +31,7 @@ public class Utilerias {
         sql.append(rb.getString(tabla.getPropiedad()));
         return sql;
     }
-    
+
     /**
      * 
      * @param tabla - nombre de la tabla
@@ -58,7 +59,7 @@ public class Utilerias {
      */
     public static StringBuilder prepareDelete(Util tabla){
         StringBuilder sql = new StringBuilder(MIN_QUERY_BUFFER);
-        sql.append(rb.getString(Util.DELETE_FROM.getPropiedad())).append(rb.getString(Util.ESPACIO.getPropiedad()));
+        sql.append(rb.getString(Util.DELETE_FROM.getPropiedad())).append(" ");
         sql.append(rb.getString(tabla.getPropiedad()));
         return sql;
     }
@@ -90,6 +91,7 @@ public class Utilerias {
                 .append(rb.getString(Util.WHERE.getPropiedad()))
                 .append(rb.getString(Util.ESPACIO.getPropiedad()));
         sql.append(parseColumnas(" and ", " = ?", columnas));
+        System.out.println(sql.toString());
         return sql;
     }
     
@@ -129,6 +131,6 @@ public class Utilerias {
             salida = salida.substring(0, salida.length() - separador.length());
         }
         return salida;
-    }
+    }    
 
 }
