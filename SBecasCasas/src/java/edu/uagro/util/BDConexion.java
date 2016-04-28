@@ -17,8 +17,7 @@ public class BDConexion {
         Connection conn;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdproyectos", "magic", "123");
-            //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdproyectos", "usrproyectos", "usrproy*/&");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/becascasas", "becas", "casas");
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
             conn = null;
