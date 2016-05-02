@@ -1,6 +1,8 @@
 package edu.uagro.dto;
 
-public class Tbl_UsuariosDTO {
+import java.io.Serializable;
+
+public class Tbl_UsuariosDTO implements Serializable{
     private int id;
     private int cat_tipousuarioDTO;
     private String nombre;
