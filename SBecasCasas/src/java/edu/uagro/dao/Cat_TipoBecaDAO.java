@@ -189,6 +189,42 @@ public class Cat_TipoBecaDAO {
         }
         return cat_tipobeca;
     }
+
+    public ArrayList<Cat_TipoBecaDTO> obtenerDatos() {    
+         Connection con = BDConexion.getConexion();
+        ArrayList<Cat_TipoBecaDTO> lista = new ArrayList();
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            StringBuilder sql;
+            // 1. define la cadena sql
+            sql = new StringBuilder(400);
+            // sql = select * from cat_nivelbeca
+            sql.append(Utilerias.getPropiedad(Util.SELECT)).append(Utilerias.getPropiedad(Util.ESPACIO))
+                    .append(Utilerias.getPropiedad(Util.ASTERISCO)).append(Utilerias.getPropiedad(Util.ESPACIO))
+                    .append(Utilerias.getPropiedad(Util.FROM)).append(Utilerias.getPropiedad(Util.ESPACIO))
+                    .append(Utilerias.getPropiedad(Util.cat_tipobeca));
+            ps = con.prepareStatement(sql.toString());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Cat_TipoBecaDTO dto = new Cat_TipoBecaDTO();
+                dto.setId(rs.getInt(Utilerias.getPropiedad(Util.cat_tipobecaId)));
+                dto.setNombre(rs.getString(Utilerias.getPropiedad(Util.cat_tipobecaNombre)));
+                dto.setNivelMaximo(rs.getInt(Utilerias.getPropiedad(Util.cat_tipobecaNivelMaximo)));
+                dto.setDescripcion(rs.getString(Utilerias.getPropiedad(Util.cat_tipobecaDescripcion)));
+                lista.add(dto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cat_TipoBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Cat_TipoBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
     
     
 }

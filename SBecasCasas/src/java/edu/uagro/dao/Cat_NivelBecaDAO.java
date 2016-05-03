@@ -15,10 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,9 +23,9 @@ import java.util.logging.Logger;
  * @author Antonio18244
  */
 public class Cat_NivelBecaDAO {
-    
-     public int insertar(Cat_NivelBecaDTO cat_nivelbeca) {
-        if (cat_nivelbeca ==null){
+
+    public int insertar(Cat_NivelBecaDTO cat_nivelbeca) {
+        if (cat_nivelbeca == null) {
             return -1;
         }
         int indice = -1;
@@ -37,7 +33,7 @@ public class Cat_NivelBecaDAO {
         ResultSet rs;
         PreparedStatement ps;
         StringBuilder sql;
-        Util[] columnas = {Util.cat_nivelbecaNombre };
+        Util[] columnas = {Util.cat_nivelbecaNombre};
         Util tabla = Util.cat_nivelbeca;
         sql = Utilerias.prepareInsert(tabla, columnas);
         try {
@@ -65,11 +61,10 @@ public class Cat_NivelBecaDAO {
         }
         return indice;
     }
-    
 
     public boolean eliminar(Cat_NivelBecaDTO cat_nivelbeca) {
-       
-        if (cat_nivelbeca == null){
+
+        if (cat_nivelbeca == null) {
             return false;
         }
         boolean band = false;
@@ -101,10 +96,9 @@ public class Cat_NivelBecaDAO {
         return band;
     }
 
-
     public boolean modificar(Cat_NivelBecaDTO cat_nivelbeca) {
-        
-        if (cat_nivelbeca == null){    
+
+        if (cat_nivelbeca == null) {
             return false;
         }
         boolean band = false;
@@ -138,10 +132,9 @@ public class Cat_NivelBecaDAO {
         return band;
     }
 
-
     public Object buscar(Cat_NivelBecaDTO cat_nivelbeca) {
 
-        if (cat_nivelbeca == null){
+        if (cat_nivelbeca == null) {
             return null;
         }
         Connection con = BDConexion.getConexion();
@@ -158,15 +151,15 @@ public class Cat_NivelBecaDAO {
             ps = con.prepareStatement(sql.toString());
             ps.setInt(1, cat_nivelbeca.getId());
             rs = ps.executeQuery();
-            if(rs.first()){
+            if (rs.first()) {
                 cat_nivelbeca.setNombre(rs.getString(Utilerias.getPropiedad(Util.cat_nivelbecaNombre)));
 
-            } else { 
+            } else {
                 cat_nivelbeca = null;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
-               cat_nivelbeca = null;
+            cat_nivelbeca = null;
         } finally {
             try {
                 con.close();
@@ -176,5 +169,39 @@ public class Cat_NivelBecaDAO {
         }
         return cat_nivelbeca;
     }
-    
+
+    public ArrayList<Cat_NivelBecaDTO> obtenerDatos() {
+        Connection con = BDConexion.getConexion();
+        ArrayList<Cat_NivelBecaDTO> lista = new ArrayList();
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            StringBuilder sql;
+            // 1. define la cadena sql
+            sql = new StringBuilder(400);
+            // sql = select * from cat_nivelbeca
+            sql.append(Utilerias.getPropiedad(Util.SELECT)).append(Utilerias.getPropiedad(Util.ESPACIO))
+                    .append(Utilerias.getPropiedad(Util.ASTERISCO)).append(Utilerias.getPropiedad(Util.ESPACIO))
+                    .append(Utilerias.getPropiedad(Util.FROM)).append(Utilerias.getPropiedad(Util.ESPACIO))
+                    .append(Utilerias.getPropiedad(Util.cat_nivelbeca));
+            ps = con.prepareStatement(sql.toString());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Cat_NivelBecaDTO dto = new Cat_NivelBecaDTO();
+                dto.setId(rs.getInt(Utilerias.getPropiedad(Util.cat_nivelbecaId)));
+                dto.setNombre(rs.getString(Utilerias.getPropiedad(Util.cat_nivelbecaNombre)));
+                lista.add(dto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
 }

@@ -5,10 +5,29 @@
  */
 package edu.uagro.bo;
 
+import edu.uagro.dao.Cat_TipoBecaDAO;
+import edu.uagro.dto.Cat_TipoBecaDTO;
+import java.util.ArrayList;
+
 /**
  *
  * @author Antonio18244
  */
 public class Cat_TipoBecaBO {
+
+    public int agregar(Cat_TipoBecaDTO tipoBeca) {
+         Cat_TipoBecaDAO dao = new Cat_TipoBecaDAO();
+        return dao.insertar(tipoBeca);
+    }
+
+    public ArrayList<Cat_TipoBecaDTO> obtenerDatos() {
+        Cat_TipoBecaDAO dao = new Cat_TipoBecaDAO();
+        return dao.obtenerDatos();
+    }
+
+    public boolean eliminar(Cat_TipoBecaDTO tipoBeca) {
+        Cat_TipoBecaDAO dao = new Cat_TipoBecaDAO();
+        return dao.eliminar(tipoBeca);
+    }
     
 }
