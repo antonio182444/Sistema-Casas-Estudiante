@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <body>
+
+        <ui:composition template="./../../template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="formTipoBecas">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="Nbecas">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h:link a:href="#!" type="button" onclick="formularioAltaTipoBecas();" class="btn btn-success btn-lg" title="Agregar TIpo de Beca" id="AltaTipoBeca"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></h:link>
+                                    <h:inputHidden id="NombreTipoBeca" value="#{gestionTipoBeca.tipoBeca.nombre}" ></h:inputHidden>
+                                    <h:inputHidden id="NivelMaximoBeca" value="#{gestionTipoBeca.tipoBeca.nivelMaximo}" ></h:inputHidden>
+                                    <h:inputHidden id="DescripcionTipoBeca" value="#{gestionTipoBeca.tipoBeca.descripcion}" ></h:inputHidden>
+                                    <h:commandButton action="#{gestionTipoBeca.agregarTipo()}" id="AgregarTipo" style="display:none ">
+                                        <f:ajax
+                                            execute="NombreTipoBeca NivelMaximoBeca DescripcionTipoBeca"
+                                            render="TablaTipoBeca"
+                                            />
+                                    </h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group-sm"><h4><label class="label label-primary">Buscar Tipo de Beca</label></h4></div>
+                            </div>
+
+                            <h:dataTable  id="TablaTipoBeca" class="display" value="#{gestionTipoBeca.lista}" var="elemento">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputLabel value="Nombre"></h:outputLabel>
+                                    </f:facet>
+                                    #{elemento.nombre}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputLabel value="Nivel Maximo"></h:outputLabel>
+                                    </f:facet>
+                                    #{elemento.nivelMaximo}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputLabel value="Descripcion"></h:outputLabel>
+                                    </f:facet>
+                                    #{elemento.descripcion}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputLabel value="Opciones"></h:outputLabel>
+                                    </f:facet>
+                                    <h:link a:href="#!" type="button" onclick="eliminarTipoBeca(this);" class="btn btn-danger btn-sm" title="Eliminar Tipo de Beca" id="BajaTipoBeca"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></h:link>
+                                    <h:commandButton action="#{gestionTipoBeca.eliminarTipo(elemento)}" id="EliminarTipo" style="display:none "></h:commandButton>
+                                    
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
