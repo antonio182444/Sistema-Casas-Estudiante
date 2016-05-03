@@ -11,10 +11,11 @@
         <ui:composition template="./../../template.xhtml">
 
             <ui:define name="content">
-                <h:form id="formTipoBecas">
-                    <div class="panel panel-default">
-                        <div class="panel-body" id="Nbecas">
-                            <div class="panel panel-default">
+
+                <div class="panel panel-default">
+                    <div class="panel-body" id="Nbecas">
+                        <div class="panel panel-default">
+                            <h:form id="formTipoBecas">
                                 <div class="panel-body">
                                     <h:link a:href="#!" type="button" onclick="formularioAltaTipoBecas();" class="btn btn-success btn-lg" title="Agregar TIpo de Beca" id="AltaTipoBeca"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></h:link>
                                     <h:inputHidden id="NombreTipoBeca" value="#{gestionTipoBeca.tipoBeca.nombre}" ></h:inputHidden>
@@ -23,19 +24,20 @@
                                     <h:commandButton action="#{gestionTipoBeca.agregarTipo()}" id="AgregarTipo" style="display:none ">
                                         <f:ajax
                                             execute="NombreTipoBeca NivelMaximoBeca DescripcionTipoBeca"
-                                            render="TablaTipoBeca"
+                                            render=":form:table"
                                             />
                                     </h:commandButton>
                                 </div>
-                            </div>
+                            </h:form>
                         </div>
+                    </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="form-group-sm"><h4><label class="label label-primary">Buscar Tipo de Beca</label></h4></div>
-                            </div>
-
-                            <h:dataTable  id="TablaTipoBeca" class="display" value="#{gestionTipoBeca.lista}" var="elemento">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group-sm"><h4><label class="label label-primary">Buscar Tipo de Beca</label></h4></div>
+                        </div>
+                        <h:form id="form">
+                            <h:dataTable  id="table" class="display" value="#{gestionTipoBeca.lista}" var="elemento">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputLabel value="Nombre"></h:outputLabel>
@@ -58,14 +60,15 @@
                                     <f:facet name="header">
                                         <h:outputLabel value="Opciones"></h:outputLabel>
                                     </f:facet>
-                                    <h:link a:href="#!" type="button" onclick="eliminarTipoBeca(this);" class="btn btn-danger btn-sm" title="Eliminar Tipo de Beca" id="BajaTipoBeca"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></h:link>
+                                    <h:link a:href="#!" type="button" onclick="eliminarTipoBeca(this)" class="btn btn-danger btn-sm" title="Eliminar Tipo de Beca" id="BajaTipoBeca"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></h:link>
                                     <h:commandButton action="#{gestionTipoBeca.eliminarTipo(elemento)}" id="EliminarTipo" style="display:none "></h:commandButton>
-                                    
+
                                 </h:column>
                             </h:dataTable>
-                        </div>
+                        </h:form>
                     </div>
-                </h:form>
+                </div>
+
             </ui:define>
 
         </ui:composition>

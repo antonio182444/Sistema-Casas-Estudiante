@@ -62,10 +62,41 @@ function formularioAltaTipoBecas() {
 }
 
 function eliminarTipoBeca(button){
+    console.log("Button = "+ button);
+    var tableRow = button.parentElement.parentElement;
+    console.log("tableRow = "+ tableRow);
+    var rowIndex = tableRow.rowIndex;
+    console.log("rowIndex = "+ rowIndex);
+
+    bootbox.dialog({
+        message: "Esta seguro de eliminar el tipo de beca.",
+        buttons: {
+            success: {
+                label: "Si quiero eliminarlo.",
+                className: "btn-default",
+                callback: function() {
+                    var eliminar = document.getElementById("form:table:"+(rowIndex-1)+":EliminarTipo");
+                    eliminar.click();
+                }
+            },
+            danger: {
+                label: "Cancelar",
+                className: "btn-default",
+                callback: function() {
+                }
+            }
+        }
+    });
+    e.preventdefault();
+    return false;
+}
+
+
+function elipoBeca(button){
     var tableRow = button.parentElement.parentElement;
     var rowIndex = tableRow.rowIndex;
     bootbox.dialog({
-        message: "Esta seguro de eliminar el tipo de beca.",
+        message: "Modificar el tipo de beca.",
         buttons: {
             success: {
                 label: "Si quiero eliminarlo.",
