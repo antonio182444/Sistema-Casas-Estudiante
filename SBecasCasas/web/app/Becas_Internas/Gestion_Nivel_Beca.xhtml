@@ -6,7 +6,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/dataTables.min.css"/>
+        <h:outputScript name="jquery/jquery.min.js"/>
+        <h:outputScript name="js/dataTables.min.js"/>
+        <h:outputScript name="js/bootbox.min.js"/>
+        <h:outputScript name="js/Becas_Internas/Cat_Nivel_Beca.js" />
+        <h:outputScript name="js/script.js"/>"
     </h:head>
     <h:body>
 
@@ -15,27 +21,20 @@
             <ui:define name="content">
 
                 <div class="panel panel-default">
-                    <div class="panel-body" id="Nbecas">
-                        <div class="panel panel-default">
-                            <h:form id="formNivelBecas">
-                                <div class="panel-body">
-                                    <h:link a:href="#!" type="button" onclick="formularioAltaNivelBecas();" class="btn btn-success btn-lg" title="Agregar Nivel de Beca" id="AltaNivelBeca"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></h:link>
-                                    <h:inputHidden id="NombreNivelBeca" value="#{gestionNivelBeca.nivelBeca.nombre}" ></h:inputHidden>
-                                    <h:commandButton action="#{gestionNivelBeca.agregarNivel()}" id="AgregarNivel" style="display:none ">
-                                        <f:ajax
-                                            execute="NombreNivelBeca"
-                                            render=":form:table"
-                                            />
-                                    </h:commandButton>
-                                </div>
-                            </h:form>
-                        </div>
+                    <div class="panel-heading">
+                        <h:form id="formNivelBecas">
+                            <h:link a:href="#!" type="button" onclick="formularioAltaNivelBecas();" class="btn btn-success btn-lg" title="Agregar Nivel de Beca" id="AltaNivelBeca"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></h:link>
+                            <h:inputHidden id="NombreNivelBeca" value="#{gestionNivelBeca.nivelBeca.nombre}" ></h:inputHidden>
+                            <h:commandButton action="#{gestionNivelBeca.agregarNivel()}" id="AgregarNivel" style="display:none ">
+                                <f:ajax
+                                    execute="NombreNivelBeca"
+                                    render=":form:table"
+                                    />
+                            </h:commandButton>
+                        </h:form>
                     </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="form-group-sm"><h4><label class="label label-primary">Buscar Nivel de Beca</label></h4></div>
-                        </div>
+                    <div class="panel-body">
+                        <div class="form-group-sm"><h4><label class="label label-primary">Buscar Nivel de Beca</label></h4></div>
                         <h:form id="form">
                             <h:dataTable id="table" class="display" value="#{gestionNivelBeca.lista}" var="elemento">
                                 <h:column>
@@ -52,15 +51,16 @@
                                 </h:column>
                                 <h:column>   
                                     <f:facet name="header">
-                                        <h:outputLabel value="Opciones"></h:outputLabel>
+                                        <h:outputLabel value="Acciones"></h:outputLabel>
                                     </f:facet>
-                                    <h:link a:href="#!" type="button" onclick="eliminarNivelBeca(this);" class="btn btn-danger btn-sm" title="Eliminar Nivel de Beca" id="BajaNivelBeca"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></h:link>
-                                    <h:commandButton action="#{gestionNivelBeca.eliminarNivel(elemento)}" id="EliminarNivel" style="display:none "></h:commandButton>
-
+                                    <h:link a:href="#!" type="button" onclick="eliminarNivelBeca(this, #{elemento.id});" class="btn btn-danger btn-sm" title="Eliminar Nivel de Beca" id="BajaNivelBeca"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></h:link>
+                                    <h:inputHidden id="idElemento" value="#{elemento.id}" />
+                                    <h:commandButton action="#{gestionNivelBeca.eliminarNivel(elemento)}" id="EliminarNivel" style="display:none ">
+                                    
+                                    </h:commandButton>
                                 </h:column>
                             </h:dataTable> 
                         </h:form>
-
                     </div>
 
                 </div>
@@ -68,8 +68,6 @@
             </ui:define>
 
         </ui:composition>
-
-
 
     </h:body>
 </html>

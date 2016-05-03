@@ -10,7 +10,7 @@
         <h:outputStylesheet name="css/bootstrap-combobox.css"/>
         <h:outputStylesheet name="css/dashboard.css"/>
         <h:outputStylesheet name="css/font-awesome.css"/>
-
+        <h:outputStylesheet name="css/tablaPersonalizada.css"/>
         <style>
 
             #menu ul{
@@ -70,9 +70,9 @@
                                             <span class="pull-right glyphicon glyphicon-chevron-down"></span>
                                         </a>
                                         <ul class="nav nav-list collapse" id="menuBecasInternas">
-                                            <li><h:link class="color" style="padding-left: 15%;"><i class="fa fa-pencil-square"></i> Gestión Tipo de Beca</h:link></li>
-                                            <li><h:link class="color" style="padding-left: 15%;"><i class="fa fa-th-list"></i> Gestión Nivel de Beca</h:link></li>
-                                            <li><h:link class="color" style="padding-left: 15%;"><i class="glyphicon glyphicon-file"></i> Gestión de Beca</h:link></li>
+                                            <li><h:link class="color" style="padding-left: 15%;" outcome="/app/Becas_Internas/Gestion_Tipo_Beca.xhtml"><i class="fa fa-pencil-square"></i> Gestión Tipo de Beca</h:link></li>
+                                            <li><h:link class="color" style="padding-left: 15%;" outcome="/app/Becas_Internas/Gestion_Nivel_Beca.xhtml"><i class="fa fa-th-list"></i> Gestión Nivel de Beca</h:link></li>
+                                            <li><h:link class="color" style="padding-left: 15%;" outcome="/app/Becas_Internas/Gestion_Beca.xhtml"><i class="glyphicon glyphicon-file"></i> Gestión de Beca</h:link></li>
                                             <li><h:link class="color" style="padding-left: 15%;"><i class="glyphicon glyphicon-eye-open"></i> Gestión Consultas</h:link></li>
                                         </ul>
                                     </li>

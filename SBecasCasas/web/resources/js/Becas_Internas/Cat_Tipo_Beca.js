@@ -62,12 +62,7 @@ function formularioAltaTipoBecas() {
 }
 
 function eliminarTipoBeca(button){
-    console.log("Button = "+ button);
-    var tableRow = button.parentElement.parentElement;
-    console.log("tableRow = "+ tableRow);
-    var rowIndex = tableRow.rowIndex;
-    console.log("rowIndex = "+ rowIndex);
-
+    var string = button.id.substring(0, button.id.lastIndexOf(':'));
     bootbox.dialog({
         message: "Esta seguro de eliminar el tipo de beca.",
         buttons: {
@@ -75,7 +70,7 @@ function eliminarTipoBeca(button){
                 label: "Si quiero eliminarlo.",
                 className: "btn-default",
                 callback: function() {
-                    var eliminar = document.getElementById("form:table:"+(rowIndex-1)+":EliminarTipo");
+                    var eliminar = document.getElementById(string+":EliminarTipo");
                     eliminar.click();
                 }
             },
