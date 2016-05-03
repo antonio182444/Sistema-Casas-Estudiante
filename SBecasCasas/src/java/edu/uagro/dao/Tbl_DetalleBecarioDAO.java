@@ -5,6 +5,7 @@ import edu.uagro.util.BDConexion;
 import edu.uagro.util.Util;
 import edu.uagro.util.Utilerias;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,9 +46,21 @@ public class Tbl_DetalleBecarioDAO {
             ps = con.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, detalleBecario.getAdscripcion());
             ps.setString(2, detalleBecario.getArea());
-            ps.setString(3, detalleBecario.getFecha());
-            ps.setString(4, detalleBecario.getFechaFinBeca());
-            ps.setString(5, detalleBecario.getFechaInicioBeca());
+            if (detalleBecario.getFecha() != null) {
+                ps.setDate(3, new Date (detalleBecario.getFecha().getTime()));
+            } else {
+                ps.setNull(3, java.sql.Types.DATE);
+            }
+            if (detalleBecario.getFechaFinBeca()!= null) {
+                ps.setDate(4, new Date (detalleBecario.getFechaFinBeca().getTime()));
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);
+            }
+            if (detalleBecario.getFecha() != null) {
+                ps.setDate(5, new Date (detalleBecario.getFechaInicioBeca().getTime()));
+            } else {
+                ps.setNull(5, java.sql.Types.DATE);
+            }
             ps.setString(6, detalleBecario.getObservacion());
             ps.setString(7, detalleBecario.getSolicitante());
             ps.setInt(8, detalleBecario.getCat_nivelbecaIdDTO());
@@ -139,9 +152,21 @@ public class Tbl_DetalleBecarioDAO {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, detalleBecario.getAdscripcion());
             ps.setString(2, detalleBecario.getArea());
-            ps.setString(3, detalleBecario.getFecha());
-            ps.setString(4, detalleBecario.getFechaFinBeca());
-            ps.setString(5, detalleBecario.getFechaInicioBeca());
+            if (detalleBecario.getFecha() != null) {
+                ps.setDate(3, new Date (detalleBecario.getFecha().getTime()));
+            } else {
+                ps.setNull(3, java.sql.Types.DATE);
+            }
+            if (detalleBecario.getFechaFinBeca()!= null) {
+                ps.setDate(4, new Date (detalleBecario.getFechaFinBeca().getTime()));
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);
+            }
+            if (detalleBecario.getFecha() != null) {
+                ps.setDate(5, new Date (detalleBecario.getFechaInicioBeca().getTime()));
+            } else {
+                ps.setNull(5, java.sql.Types.DATE);
+            }
             ps.setString(6, detalleBecario.getObservacion());
             ps.setString(7, detalleBecario.getSolicitante());
             ps.setInt(8, detalleBecario.getCat_nivelbecaIdDTO());
@@ -199,9 +224,9 @@ public class Tbl_DetalleBecarioDAO {
             if(rs.first()){
                 detalleBecario.setAdscripcion(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioAdscripcion)));
                 detalleBecario.setArea(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioArea)));
-                detalleBecario.setFecha(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioFecha)));
-                detalleBecario.setFechaFinBeca(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioFechaFinBeca)));
-                detalleBecario.setFechaInicioBeca(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioFechaInicioBeca)));
+                detalleBecario.setFecha(rs.getDate(Utilerias.getPropiedad(Util.tbl_detallebecarioFecha)));
+                detalleBecario.setFechaFinBeca(rs.getDate(Utilerias.getPropiedad(Util.tbl_detallebecarioFechaFinBeca)));
+                detalleBecario.setFechaInicioBeca(rs.getDate(Utilerias.getPropiedad(Util.tbl_detallebecarioFechaInicioBeca)));
                 detalleBecario.setObservacion(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioObservacion)));
                 detalleBecario.setSolicitante(rs.getString(Utilerias.getPropiedad(Util.tbl_detallebecarioSolicitante)));
                 detalleBecario.setCat_nivelbecaIdDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_detallebecario_cat_nivelbecaId)));

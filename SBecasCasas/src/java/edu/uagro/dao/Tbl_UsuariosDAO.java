@@ -40,8 +40,6 @@ public class Tbl_UsuariosDAO {
                     .append(Utilerias.getPropiedad(Util.AND)).append(Utilerias.getPropiedad(Util.ESPACIO))
                     .append(Utilerias.getPropiedad(Util.tbl_usuariosContrasenia)).append(Utilerias.getPropiedad(Util.ESPACIO_IGUAL_ESPACIO))
                     .append(Utilerias.getPropiedad(Util.QUESTION_MARK));
-            System.out.println(sql.toString());
-            System.out.println("con.toString() = " + con.toString());
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getContrasenia());
@@ -50,7 +48,7 @@ public class Tbl_UsuariosDAO {
                 usuario.setId(rs.getInt(Utilerias.getPropiedad(Util.tbl_usuariosId)));
                 usuario.setEstado(rs.getInt(Utilerias.getPropiedad(Util.tbl_usuariosEstado)));
                 usuario.setNombre(rs.getString(Utilerias.getPropiedad(Util.tbl_usuariosNombre)));
-                usuario.setFechaCreacion(rs.getString(Utilerias.getPropiedad(Util.tbl_usuariosFechaCreacion)));
+                usuario.setFechaCreacion(rs.getDate(Utilerias.getPropiedad(Util.tbl_usuariosFechaCreacion)));
                 usuario.setCat_tipousuarioDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_usuarios_cat_tipousuarioId)));
                 return true;
             }

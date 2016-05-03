@@ -1,11 +1,13 @@
 package edu.uagro.dto;
 
+import java.util.Date;
+
 public class Tbl_DetalleBecarioDTO {
     private int id;
-    private String fecha;
+    private Date fecha;
     private int tbl_becarioIdDTO;
-    private String fechaInicioBeca;
-    private String fechaFinBeca;
+    private Date fechaInicioBeca;
+    private Date fechaFinBeca;
     private String area;
     private String solicitante;
     private String adscripcion;
@@ -23,11 +25,11 @@ public class Tbl_DetalleBecarioDTO {
         this.id = id;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -39,22 +41,22 @@ public class Tbl_DetalleBecarioDTO {
         this.tbl_becarioIdDTO = tbl_becarioIdDTO;
     }
 
-    public String getFechaInicioBeca() {
-        return fechaInicioBeca;
-    }
-
-    public void setFechaInicioBeca(String fechaInicioBeca) {
-        this.fechaInicioBeca = fechaInicioBeca;
-    }
-
-    public String getFechaFinBeca() {
+    public Date getFechaFinBeca() {
         return fechaFinBeca;
     }
 
-    public void setFechaFinBeca(String fechaFinBeca) {
+    public void setFechaFinBeca(Date fechaFinBeca) {
         this.fechaFinBeca = fechaFinBeca;
     }
 
+    public Date getFechaInicioBeca() {
+        return fechaInicioBeca;
+    }
+
+    public void setFechaInicioBeca(Date fechaInicioBeca) {
+        this.fechaInicioBeca = fechaInicioBeca;
+    }
+    
     public String getArea() {
         return area;
     }

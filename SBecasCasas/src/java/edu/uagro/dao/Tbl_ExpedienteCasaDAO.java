@@ -5,6 +5,7 @@ import edu.uagro.util.BDConexion;
 import edu.uagro.util.Util;
 import edu.uagro.util.Utilerias;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,9 +42,21 @@ public class Tbl_ExpedienteCasaDAO {
         sql = Utilerias.prepareInsert(tabla, columnas);
         try {
             ps = con.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, expedienteCasa.getFechaFinalArrendamiento());
-            ps.setString(2, expedienteCasa.getFechaInicialArrendamiento());
-            ps.setString(3, expedienteCasa.getFechaInicio());
+            if (expedienteCasa.getFechaFinalArrendamiento() != null) {
+                ps.setDate(1, new Date (expedienteCasa.getFechaFinalArrendamiento().getTime()));
+            } else {
+                ps.setNull(1, java.sql.Types.DATE);
+            }
+            if (expedienteCasa.getFechaInicialArrendamiento() != null) {
+                ps.setDate(2, new Date (expedienteCasa.getFechaInicialArrendamiento().getTime()));
+            } else {
+                ps.setNull(2, java.sql.Types.DATE);
+            }
+            if (expedienteCasa.getFechaInicio() != null) {
+                ps.setDate(3, new Date (expedienteCasa.getFechaInicio().getTime()));
+            } else {
+                ps.setNull(3, java.sql.Types.DATE);
+            }
             ps.setDouble(4, expedienteCasa.getMontoRenta());
             ps.setString(5, expedienteCasa.getTipoRenta());
             ps.setInt(6, expedienteCasa.getTbl_arrendadorIdDTO());
@@ -131,9 +144,21 @@ public class Tbl_ExpedienteCasaDAO {
         sql = Utilerias.concatenarWhere(sql, columnaCondicion);
         try {
             ps = con.prepareStatement(sql.toString());
-            ps.setString(1, expedienteCasa.getFechaFinalArrendamiento());
-            ps.setString(2, expedienteCasa.getFechaInicialArrendamiento());
-            ps.setString(3, expedienteCasa.getFechaInicio());
+            if (expedienteCasa.getFechaFinalArrendamiento() != null) {
+                ps.setDate(1, new Date (expedienteCasa.getFechaFinalArrendamiento().getTime()));
+            } else {
+                ps.setNull(1, java.sql.Types.DATE);
+            }
+            if (expedienteCasa.getFechaInicialArrendamiento() != null) {
+                ps.setDate(2, new Date (expedienteCasa.getFechaInicialArrendamiento().getTime()));
+            } else {
+                ps.setNull(2, java.sql.Types.DATE);
+            }
+            if (expedienteCasa.getFechaInicio() != null) {
+                ps.setDate(3, new Date (expedienteCasa.getFechaInicio().getTime()));
+            } else {
+                ps.setNull(3, java.sql.Types.DATE);
+            }
             ps.setDouble(4, expedienteCasa.getMontoRenta());
             ps.setString(5, expedienteCasa.getTipoRenta());
             ps.setInt(6, expedienteCasa.getTbl_arrendadorIdDTO());
@@ -187,9 +212,9 @@ public class Tbl_ExpedienteCasaDAO {
             ps.setInt(1, expedienteCasa.getId());
             rs = ps.executeQuery();
             if(rs.first()){
-                expedienteCasa.setFechaFinalArrendamiento(rs.getString(Utilerias.getPropiedad(Util.tbl_expedientecasaFechaFinalArrendamiento)));
-                expedienteCasa.setFechaInicialArrendamiento(rs.getString(Utilerias.getPropiedad(Util.tbl_expedientecasaFechaInicialArrendamiento)));
-                expedienteCasa.setFechaInicio(rs.getString(Utilerias.getPropiedad(Util.tbl_expedientecasaFechaRegistro)));
+                expedienteCasa.setFechaFinalArrendamiento(rs.getDate(Utilerias.getPropiedad(Util.tbl_expedientecasaFechaFinalArrendamiento)));
+                expedienteCasa.setFechaInicialArrendamiento(rs.getDate(Utilerias.getPropiedad(Util.tbl_expedientecasaFechaInicialArrendamiento)));
+                expedienteCasa.setFechaInicio(rs.getDate(Utilerias.getPropiedad(Util.tbl_expedientecasaFechaRegistro)));
                 expedienteCasa.setMontoRenta(rs.getDouble(Utilerias.getPropiedad(Util.tbl_expedientecasaMontoRenta)));
                 expedienteCasa.setTipoRenta(rs.getString(Utilerias.getPropiedad(Util.tbl_expedientecasaTipoRenta)));
                 expedienteCasa.setTbl_arrendadorIdDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_expedientecasa_tbl_arrendadorId)));
