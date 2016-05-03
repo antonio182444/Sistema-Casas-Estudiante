@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -178,4 +179,48 @@ public class Cat_ZonasDAO {
         return cat_zonas;
     }
     
+     public ArrayList<Cat_ZonasDTO> obtenerZonas(){
+        Connection con = BDConexion.getConexion();
+        ArrayList<Cat_ZonasDTO> lstZonas = new ArrayList<>();
+        //Statement estatuto;
+        Statement st = null;
+        ResultSet rs = null;
+        Cat_ZonasDTO zonasDTO;
+        
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT cat_zonasId, cat_zonasNombre FROM cat_zonas");
+            while(rs.next()){
+                zonasDTO = new Cat_ZonasDTO();
+                zonasDTO.setId(rs.getInt("cat_zonasId"));
+                zonasDTO.setNombre(rs.getString("cat_zonasNombre"));
+                lstZonas.add(zonasDTO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, e);
+        }finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(st != null){
+                try {
+                    st.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(con != null){
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cat_NivelBecaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lstZonas;                
+    }
 }
