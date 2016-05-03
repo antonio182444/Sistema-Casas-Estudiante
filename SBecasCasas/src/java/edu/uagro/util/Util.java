@@ -111,6 +111,7 @@ public enum Util {
     tbl_casaestudianteObservacion("tbl_casaestudianteObservacion"),
     tbl_casaestudiante_cat_tipocasaId("cat_tipocasaId"),
     tbl_casaestudiante_cat_zonasId("cat_zonasId"),
+    tbl_casaestudianteEstado("tbl_casaestudianteEstado"),
     //#tbl_detallebecaexterna
     tbl_detallebecaexternaId("tbl_detallebecaexternaId"),
     tbl_detallebecaexterna_cat_anioId("cat_anioId"),
