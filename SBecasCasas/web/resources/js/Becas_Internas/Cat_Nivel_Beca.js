@@ -54,7 +54,7 @@ function eliminarNivelBeca(button){
                 label: "Si quiero eliminarlo.",
                 className: "btn-default",
                 callback: function() {
-                    var eliminar = document.getElementById("formNivelBecas:TablaNivelBeca:"+(rowIndex-1)+":EliminarNivel");
+                    var eliminar = document.getElementById("form:table:"+(rowIndex-1)+":EliminarNivel");
                     eliminar.click();
                 }
             },
