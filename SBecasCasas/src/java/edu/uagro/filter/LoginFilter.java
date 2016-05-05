@@ -24,11 +24,12 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         System.out.println("filter started");
+        System.out.println("this is AppFilter");
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
-        if (session == null) {
-            System.out.println("its going back");
+        if (session == null || session.getAttribute("user") == null) {
+            System.out.println("sending to index.xhtml");
             response.sendRedirect(request.getContextPath() + "/faces/index.xhtml"); // No logged-in user found, so redirect to login page.
         } else {
             System.out.println("its forwarding");
@@ -36,6 +37,7 @@ public class LoginFilter implements Filter {
             response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
             response.setDateHeader("Expires", 0);
             chain.doFilter(req, res); // Logged-in user found, so just continue request.
+            System.out.println("-----------------------");
         }
     }
 

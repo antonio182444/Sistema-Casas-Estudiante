@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    $('#formNivelBecas > TablaNivelBeca').DataTable();
-} );
-
 function formularioAltaNivelBecas() {
     bootbox.dialog({
         title: "Alta Nivel de Beca.",
@@ -45,8 +41,7 @@ function formularioAltaNivelBecas() {
 }
 
 function eliminarNivelBeca(button){
-    var tableRow = button.parentElement.parentElement;
-    var rowIndex = tableRow.rowIndex;
+    var string = button.id.substring(0, button.id.lastIndexOf(':'));
     bootbox.dialog({
         message: "Esta seguro de eliminar el nivel de beca.",
         buttons: {
@@ -54,7 +49,7 @@ function eliminarNivelBeca(button){
                 label: "Si quiero eliminarlo.",
                 className: "btn-default",
                 callback: function() {
-                    var eliminar = document.getElementById("form:table:"+(rowIndex-1)+":EliminarNivel");
+                    var eliminar = document.getElementById(string+":EliminarNivel");
                     eliminar.click();
                 }
             },

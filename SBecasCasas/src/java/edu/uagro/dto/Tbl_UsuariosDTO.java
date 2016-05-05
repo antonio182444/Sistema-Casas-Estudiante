@@ -1,12 +1,15 @@
 package edu.uagro.dto;
 
-public class Tbl_UsuariosDTO {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Tbl_UsuariosDTO implements Serializable{
     private int id;
     private int cat_tipousuarioDTO;
     private String nombre;
     private String email;
     private String contrasenia;
-    private String fechaCreacion;
+    private Date fechaCreacion;
     private int estado;
 
     public int getId() {
@@ -49,11 +52,11 @@ public class Tbl_UsuariosDTO {
         this.contrasenia = contrasenia;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

@@ -25,19 +25,18 @@ public class IndexFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         System.out.println("filter started");
+        System.out.println("this is IndexFilter");
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
-
         if (session == null || session.getAttribute("user") == null) {
             System.out.println("its forwarding");
             chain.doFilter(req, res); // Logged-in user found, so just continue request.
-            System.out.println("this is IndexFilter");
         } else {
             System.out.println("its going back");
             response.sendRedirect(request.getContextPath() + "/faces/app/inicio.xhtml"); // No logged-in user found, so redirect to login page.
-        
         }
+        System.out.println("---------------------");
     }
 
     @Override

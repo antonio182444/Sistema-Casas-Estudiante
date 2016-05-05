@@ -1,5 +1,7 @@
 package edu.uagro.dto;
 
+import java.util.Date;
+
 public class Tbl_ExpedienteCasaDTO {
     private int id;
     private int tbl_casaestudianteClaveDTO;
@@ -8,9 +10,9 @@ public class Tbl_ExpedienteCasaDTO {
     private int tbl_arrendadorIdDTO;
     private double montoRenta;
     private String tipoRenta;
-    private String fechaInicio;
-    private String fechaInicialArrendamiento;
-    private String fechaFinalArrendamiento;
+    private Date fechaInicio;
+    private Date fechaInicialArrendamiento;
+    private Date fechaFinalArrendamiento;
     private int estado;
 
     public int getEstado() {
@@ -78,27 +80,27 @@ public class Tbl_ExpedienteCasaDTO {
         this.tipoRenta = tipoRenta;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public String getFechaInicialArrendamiento() {
+    public Date getFechaInicialArrendamiento() {
         return fechaInicialArrendamiento;
     }
 
-    public void setFechaInicialArrendamiento(String fechaInicialArrendamiento) {
+    public void setFechaInicialArrendamiento(Date fechaInicialArrendamiento) {
         this.fechaInicialArrendamiento = fechaInicialArrendamiento;
     }
 
-    public String getFechaFinalArrendamiento() {
+    public Date getFechaFinalArrendamiento() {
         return fechaFinalArrendamiento;
     }
 
-    public void setFechaFinalArrendamiento(String fechaFinalArrendamiento) {
+    public void setFechaFinalArrendamiento(Date fechaFinalArrendamiento) {
         this.fechaFinalArrendamiento = fechaFinalArrendamiento;
     }
     
