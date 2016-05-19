@@ -129,7 +129,7 @@ public class Cat_TipoBecaDAO {
             ps.setString(1, cat_tipobeca.getNombre());
             ps.setInt(2, cat_tipobeca.getNivelMaximo());
             ps.setString(3, cat_tipobeca.getDescripcion());
-
+            ps.setInt(4, cat_tipobeca.getId());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Modifying Cat_TipoBeca failed, no rows affected.");

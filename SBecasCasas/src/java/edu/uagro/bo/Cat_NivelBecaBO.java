@@ -30,4 +30,9 @@ public class Cat_NivelBecaBO {
         return dao.eliminar(dto);
     }
 
+    public boolean editar(Cat_NivelBecaDTO dto) {
+        Cat_NivelBecaDAO dao = new Cat_NivelBecaDAO();
+        return dao.modificar(dto);
+    }
+
 }

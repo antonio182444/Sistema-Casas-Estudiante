@@ -26,22 +26,36 @@ public class Tbl_RepresentanteDAO {
         Connection con = BDConexion.getConexion();
         PreparedStatement ps;
         StringBuilder sql;
-        Util[] columnas = {Util.tbl_representanteApellidoMat,
-                            Util.tbl_representanteApellidoPat,
-                            Util.tbl_representanteEmail,
-                            Util.tbl_representanteMatricula,
+        Util[] columnas = { Util.tbl_representanteMatricula,
                             Util.tbl_representanteNombre,
-                            Util.tbl_representanteTelefono};
+                            Util.tbl_representanteApellidoMat,
+                            Util.tbl_representanteApellidoPat,
+                            Util.tbl_representanteSexo,
+                            Util.tbl_representanteUAcademica,
+                            Util.tbl_representanteGrado,
+                            Util.tbl_representanteTurno,
+                            Util.tbl_representantePromedio,
+                            Util.tbl_representanteTelefono,
+                            Util.tbl_representanteEmail,
+                            Util.tbl_representante_cat_tiporepresentanteId
+                           
+    };
         Util tabla = Util.tbl_representante;
         sql = Utilerias.prepareInsert(tabla, columnas);
         try {
             ps = con.prepareStatement(sql.toString());
-            ps.setString(1, representante.getApellidoMat());
-            ps.setString(2, representante.getApellidoPat());
-            ps.setString(3, representante.getEmail());
-            ps.setString(4, representante.getMatricula());
-            ps.setString(5, representante.getNombre());
-            ps.setString(6, representante.getTelefono());
+            ps.setString(1, representante.getMatricula());
+            ps.setString(2, representante.getNombre());
+            ps.setString(3, representante.getApellidoMat());
+            ps.setString(4, representante.getApellidoPat());
+            ps.setString(5, representante.getSexo());
+            ps.setString(6, representante.getUAcademica());
+            ps.setInt(7, representante.getGrado());
+            ps.setString(8, representante.getTurno());
+            ps.setDouble(9, representante.getPromedio());
+            ps.setString(10, representante.getTelefono());
+            ps.setString(11, representante.getEmail());
+            ps.setInt(12, representante.getCat_tiporepresentanteIdDTO());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Creating Representante failed, no rows affected.");
@@ -68,13 +82,16 @@ public class Tbl_RepresentanteDAO {
         Connection con = BDConexion.getConexion();
         PreparedStatement ps;
         StringBuilder sql;
-        Util columna = Util.tbl_representanteMatricula;
+        Util columna[] ={ Util.tbl_representanteEstado};
         Util tabla = Util.tbl_representante;
-        sql = Utilerias.prepareDelete(tabla);
-        sql = Utilerias.concatenarWhere(sql, columna);
+        sql = Utilerias.prepareUpdate(tabla);
+        Util columnaCondicion = Util.tbl_representanteMatricula;
+        sql = Utilerias.concatenarWhere(sql, columnaCondicion);
         try {
+            representante.setEstado(0);
             ps = con.prepareStatement(sql.toString());
-            ps.setString(1, representante.getMatricula());
+            ps.setInt(1, representante.getEstado());
+            ps.setString(2, representante.getMatricula());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Eliminating Representante failed, no rows affected.");
@@ -101,25 +118,36 @@ public class Tbl_RepresentanteDAO {
         Connection con = BDConexion.getConexion();
         PreparedStatement ps;
         StringBuilder sql;
-        Util[] columnas = {Util.tbl_representanteApellidoMat,
-                            Util.tbl_representanteApellidoPat,
-                            Util.tbl_representanteEmail,
+        Util[] columnas = { Util.tbl_representanteMatricula,
                             Util.tbl_representanteNombre,
+                            Util.tbl_representanteApellidoMat,
+                            Util.tbl_representanteApellidoPat,
+                            Util.tbl_representanteSexo,
+                            Util.tbl_representanteUAcademica,
+                            Util.tbl_representanteGrado,
+                            Util.tbl_representanteTurno,
+                            Util.tbl_representantePromedio,
                             Util.tbl_representanteTelefono,
-                            Util.tbl_representanteEstado};
+                            Util.tbl_representanteEmail,
+                            Util.tbl_representante_cat_tiporepresentanteId};
         Util tabla = Util.tbl_representante;
         sql = Utilerias.prepareUpdate(tabla, columnas);
         Util columnaCondicion = Util.tbl_representanteMatricula;
         sql = Utilerias.concatenarWhere(sql, columnaCondicion);
         try {
             ps = con.prepareStatement(sql.toString());
-            ps.setString(1, representante.getApellidoMat());
-            ps.setString(2, representante.getApellidoPat());
-            ps.setString(3, representante.getEmail());
-            ps.setString(4, representante.getNombre());
-            ps.setString(5, representante.getTelefono());
-            ps.setInt(6, representante.getEstado());
-            ps.setString(7, representante.getMatricula());
+            ps.setString(1, representante.getMatricula());
+            ps.setString(2, representante.getNombre());
+            ps.setString(3, representante.getApellidoMat());
+            ps.setString(4, representante.getApellidoPat());
+            ps.setString(5, representante.getSexo());
+            ps.setString(6, representante.getUAcademica());
+            ps.setInt(7, representante.getGrado());
+            ps.setString(8, representante.getTurno());
+            ps.setDouble(9, representante.getPromedio());
+            ps.setString(10, representante.getTelefono());
+            ps.setString(11, representante.getEmail());
+            ps.setInt(12, representante.getCat_tiporepresentanteIdDTO());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Modifying Representante failed, no rows affected.");
@@ -146,12 +174,18 @@ public class Tbl_RepresentanteDAO {
         PreparedStatement ps;
         ResultSet rs;
         StringBuilder sql;
-        Util[] columnas = {Util.tbl_representanteApellidoMat,
-                            Util.tbl_representanteApellidoPat,
-                            Util.tbl_representanteEmail,
+        Util[] columnas = { Util.tbl_representanteMatricula,
                             Util.tbl_representanteNombre,
+                            Util.tbl_representanteApellidoMat,
+                            Util.tbl_representanteApellidoPat,
+                            Util.tbl_representanteSexo,
+                            Util.tbl_representanteUAcademica,
+                            Util.tbl_representanteGrado,
+                            Util.tbl_representanteTurno,
+                            Util.tbl_representantePromedio,
                             Util.tbl_representanteTelefono,
-                            Util.tbl_representanteEstado};
+                            Util.tbl_representanteEmail,
+                            Util.tbl_representante_cat_tiporepresentanteId};
         Util tabla = Util.tbl_representante;
         sql = Utilerias.prepareSelect(tabla, columnas);
         Util columnaCondicion = Util.tbl_representanteMatricula;
@@ -161,12 +195,19 @@ public class Tbl_RepresentanteDAO {
             ps.setString(1, representante.getMatricula());
             rs = ps.executeQuery();
             if(rs.first()){
+                representante.setMatricula(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteMatricula)));
+                representante.setNombre(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteNombre)));
                 representante.setApellidoMat(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteApellidoMat)));
                 representante.setApellidoPat(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteApellidoPat)));
+                representante.setSexo(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteSexo)));
+                representante.setUAcademica(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteUAcademica)));
+                representante.setGrado(rs.getInt(Utilerias.getPropiedad(Util.tbl_representanteGrado)));
+                representante.setTurno(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteTurno)));
+                representante.setPromedio(rs.getDouble(Utilerias.getPropiedad(Util.tbl_representantePromedio)));
                 representante.setEmail(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteEmail)));
-                representante.setNombre(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteNombre)));
                 representante.setTelefono(rs.getString(Utilerias.getPropiedad(Util.tbl_representanteTelefono)));
                 representante.setEstado(rs.getInt(Utilerias.getPropiedad(Util.tbl_representanteEstado)));
+                representante.setCat_tiporepresentanteIdDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_representante_cat_tiporepresentanteId)));
             } else { 
                 representante = null;
             }

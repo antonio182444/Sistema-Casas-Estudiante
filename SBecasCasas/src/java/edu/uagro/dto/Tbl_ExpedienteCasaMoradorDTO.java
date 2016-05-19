@@ -4,6 +4,7 @@ public class Tbl_ExpedienteCasaMoradorDTO {
     private int id;
     private int tbl_expedientecasaIdDTO;
     private String matricula;
+    private String nombre;//
     private String apellidoPat;
     private String apellidoMat;
     private String sexo;
@@ -15,10 +16,36 @@ public class Tbl_ExpedienteCasaMoradorDTO {
     private String municipio;
     private String region;
     private String planEstudio;
-    private String hablaLenguaIndigena;
+    private int hablaLenguaIndigena;
+    private int cat_lenguaIndigena;//
     private String foto;
     private int status;
     private String observacion;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getHablaLenguaIndigena() {
+        return hablaLenguaIndigena;
+    }
+
+    public void setHablaLenguaIndigena(int hablaLenguaIndigena) {
+        this.hablaLenguaIndigena = hablaLenguaIndigena;
+    }
+
+    public int getCat_lenguaIndigena() {
+        return cat_lenguaIndigena;
+    }
+
+    public void setCat_lenguaIndigena(int cat_lenguaIndigena) {
+        this.cat_lenguaIndigena = cat_lenguaIndigena;
+    }
+    
 
     public int getId() {
         return id;
@@ -132,13 +159,7 @@ public class Tbl_ExpedienteCasaMoradorDTO {
         this.planEstudio = planEstudio;
     }
 
-    public String getHablaLenguaIndigena() {
-        return hablaLenguaIndigena;
-    }
 
-    public void setHablaLenguaIndigena(String hablaLenguaIndigena) {
-        this.hablaLenguaIndigena = hablaLenguaIndigena;
-    }
 
     public String getFoto() {
         return foto;

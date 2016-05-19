@@ -29,5 +29,10 @@ public class Cat_TipoBecaBO {
         Cat_TipoBecaDAO dao = new Cat_TipoBecaDAO();
         return dao.eliminar(tipoBeca);
     }
+
+    public boolean editar(Cat_TipoBecaDTO dto) {
+        Cat_TipoBecaDAO dao = new Cat_TipoBecaDAO();
+        return dao.modificar(dto);
+    }
     
 }

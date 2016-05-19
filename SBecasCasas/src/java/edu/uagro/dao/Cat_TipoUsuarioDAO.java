@@ -120,6 +120,7 @@ public class Cat_TipoUsuarioDAO {
         try {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, cat_tipousuario.getNombre());
+            ps.setInt(2, cat_tipousuario.getId());
 
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
