@@ -128,6 +128,7 @@ public class Cat_TipoBecaExternaDAO {
             ps.setString(1, cat_tipobecaexterna.getNombre());
             ps.setInt(2, cat_tipobecaexterna.getCat_nivelbecaexternaIdDTO());
             ps.setString(3, cat_tipobecaexterna.getDescripcion());
+            ps.setInt(4, cat_tipobecaexterna.getId());
 
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {

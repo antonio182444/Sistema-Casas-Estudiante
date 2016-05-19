@@ -68,6 +68,12 @@ public class GestionTipoBeca {
         lista = bo.obtenerDatos();
         
     }
+    
+    public  void editar(Cat_TipoBecaDTO dto){
+        Cat_TipoBecaBO bo = new Cat_TipoBecaBO();
+        bo.editar(dto);
+        
+    }
 
 
 }

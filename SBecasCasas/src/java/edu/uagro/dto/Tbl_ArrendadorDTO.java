@@ -3,6 +3,8 @@ package edu.uagro.dto;
 public class Tbl_ArrendadorDTO {
     private int id;
     private String nombre;
+    private String NumProveedor;
+    private String RFC;
     private String apellidoPat;
     private String apellidoMat;
     private String domicilio;
@@ -15,6 +17,22 @@ public class Tbl_ArrendadorDTO {
         return id;
     }
 
+    public String getNumProveedor() {
+        return NumProveedor;
+    }
+
+    public void setNumProveedor(String NumProveedor) {
+        this.NumProveedor = NumProveedor;
+    }
+
+    public String getRFC() {
+        return RFC;
+    }
+
+    public void setRFC(String RFC) {
+        this.RFC = RFC;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }

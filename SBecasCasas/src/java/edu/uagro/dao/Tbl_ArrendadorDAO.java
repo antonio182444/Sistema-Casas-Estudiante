@@ -27,6 +27,8 @@ public class Tbl_ArrendadorDAO {
         PreparedStatement ps;
         StringBuilder sql;
         Util[] columnas = {Util.tbl_arrendadorNombre,
+                           Util.tbl_arrendadorNumProveedor,
+                           Util.tbl_arrendadorRFC,
                            Util.tbl_arrendadorApellidoPat,
                            Util.tbl_arrendadorApellidoMat,
                            Util.tbl_arrendadorDomicilio,
@@ -39,13 +41,15 @@ public class Tbl_ArrendadorDAO {
         try {
             ps = con.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, arrendadorDTO.getNombre());
-            ps.setString(2, arrendadorDTO.getApellidoPat());
-            ps.setString(3, arrendadorDTO.getApellidoMat());
-            ps.setString(4, arrendadorDTO.getDomicilio());
-            ps.setString(5, arrendadorDTO.getCurp());
-            ps.setString(6, arrendadorDTO.getTelefono());
-            ps.setString(7, arrendadorDTO.getEmail());
-            ps.setInt(8, arrendadorDTO.getCat_tipoarrendadorIdDTO());
+            ps.setString(2, arrendadorDTO.getNumProveedor());
+            ps.setString(3, arrendadorDTO.getRFC());
+            ps.setString(4, arrendadorDTO.getApellidoPat());
+            ps.setString(5, arrendadorDTO.getApellidoMat());
+            ps.setString(6, arrendadorDTO.getDomicilio());
+            ps.setString(7, arrendadorDTO.getCurp());
+            ps.setString(8, arrendadorDTO.getTelefono());
+            ps.setString(9, arrendadorDTO.getEmail());
+            ps.setInt(10, arrendadorDTO.getCat_tipoarrendadorIdDTO());
             int filMod = ps.executeUpdate();
             if(filMod == 0){
                 throw new SQLException("Creating Tbl_Arrendador failed, no rows affected.");
@@ -120,6 +124,8 @@ public class Tbl_ArrendadorDAO {
         PreparedStatement ps;
         StringBuilder sql;
         Util[] columnas = {Util.tbl_arrendadorNombre,
+                           Util.tbl_arrendadorNumProveedor,
+                           Util.tbl_arrendadorRFC,
                            Util.tbl_arrendadorApellidoPat,
                            Util.tbl_arrendadorApellidoMat,
                            Util.tbl_arrendadorDomicilio,
@@ -134,14 +140,16 @@ public class Tbl_ArrendadorDAO {
         try {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, arrendadorDTO.getNombre());
-            ps.setString(2, arrendadorDTO.getApellidoPat());
-            ps.setString(3, arrendadorDTO.getApellidoMat());
-            ps.setString(4, arrendadorDTO.getDomicilio());
-            ps.setString(5, arrendadorDTO.getCurp());
-            ps.setString(6, arrendadorDTO.getTelefono());
-            ps.setString(7, arrendadorDTO.getEmail());
-            ps.setInt(8, arrendadorDTO.getCat_tipoarrendadorIdDTO());
-             ps.setInt(9, arrendadorDTO.getId());
+            ps.setString(2, arrendadorDTO.getNumProveedor());
+            ps.setString(3, arrendadorDTO.getRFC());
+            ps.setString(4, arrendadorDTO.getApellidoPat());
+            ps.setString(5, arrendadorDTO.getApellidoMat());
+            ps.setString(6, arrendadorDTO.getDomicilio());
+            ps.setString(7, arrendadorDTO.getCurp());
+            ps.setString(8, arrendadorDTO.getTelefono());
+            ps.setString(9, arrendadorDTO.getEmail());
+            ps.setInt(10, arrendadorDTO.getCat_tipoarrendadorIdDTO());
+            ps.setInt(11, arrendadorDTO.getId());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Modifying Tbl_Arrendador failed, no rows affected.");
@@ -173,13 +181,15 @@ public class Tbl_ArrendadorDAO {
         ResultSet rs;
         StringBuilder sql;
          Util[] columnas = {Util.tbl_arrendadorNombre,
-                           Util.tbl_arrendadorApellidoPat,
-                           Util.tbl_arrendadorApellidoMat,
-                           Util.tbl_arrendadorDomicilio,
-                           Util.tbl_arrendadorCurp,
-                           Util.tbl_arrendadorTelefono,
-                           Util.tbl_arrendadorEmail,
-                           Util.tbl_arrendador_cat_tipoarrendadorId};
+                            Util.tbl_arrendadorNumProveedor,
+                            Util.tbl_arrendadorRFC,
+                            Util.tbl_arrendadorApellidoPat,
+                            Util.tbl_arrendadorApellidoMat,
+                            Util.tbl_arrendadorDomicilio,
+                            Util.tbl_arrendadorCurp,
+                            Util.tbl_arrendadorTelefono,
+                            Util.tbl_arrendadorEmail,
+                            Util.tbl_arrendador_cat_tipoarrendadorId};
         Util tabla = Util.tbl_arrendador;
         sql = Utilerias.prepareSelect(tabla, columnas);
         Util columnaCondicion = Util.tbl_arrendadorId;
@@ -190,6 +200,8 @@ public class Tbl_ArrendadorDAO {
             rs = ps.executeQuery();
             if(rs.first()){
                 arrendadorDTO.setNombre(rs.getString(Utilerias.getPropiedad(Util.tbl_arrendadorNombre)));
+                arrendadorDTO.setNumProveedor(rs.getString(Utilerias.getPropiedad(Util.tbl_arrendadorNumProveedor)));
+                arrendadorDTO.setRFC(rs.getString(Utilerias.getPropiedad(Util.tbl_arrendadorRFC)));
                 arrendadorDTO.setApellidoPat(rs.getString(Utilerias.getPropiedad(Util.tbl_arrendadorApellidoPat)));
                 arrendadorDTO.setApellidoMat(rs.getString(Utilerias.getPropiedad(Util.tbl_arrendadorApellidoMat)));
                 arrendadorDTO.setDomicilio(rs.getString(Utilerias.getPropiedad(Util.tbl_arrendadorDomicilio)));

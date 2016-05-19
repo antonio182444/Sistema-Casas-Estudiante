@@ -93,22 +93,22 @@ public final class AltaBecarioBeans {
     
     public void altaBecario(){
         Tbl_BecarioBO becarioBO = new Tbl_BecarioBO();
-        becarioBO.altaBecario(becarioDTO);
+        //becarioBO.altaBecario(becarioDTO);
     }
     
     public ArrayList<Cat_NivelBecaDTO> obtenerNivelesBeca(){
         Cat_NivelBecaBO nivelBO = new Cat_NivelBecaBO();
-        return nivelBO.obtenerNivelesBeca();
+        return nivelBO.obtenerDatos();
     }
     
     public ArrayList<Cat_TipoBecaDTO> obtenerTiposBeca(){
        Cat_TipoBecaBO tipoBecaBO = new Cat_TipoBecaBO();
-       return tipoBecaBO.obtenerTiposBeca();
+       return tipoBecaBO.obtenerDatos();
    }
     
      public ArrayList<Cat_ZonasDTO> obtenerZonas(){
          Cat_ZonasBO zonasBO  = new Cat_ZonasBO();
-         return zonasBO.obtenerZonas();
+      return null; //  return zonasBO.obtenerZonas();
      }
      
     
