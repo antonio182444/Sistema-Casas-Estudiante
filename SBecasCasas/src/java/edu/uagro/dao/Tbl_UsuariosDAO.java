@@ -48,7 +48,7 @@ public class Tbl_UsuariosDAO {
                 usuario.setId(rs.getInt(Utilerias.getPropiedad(Util.tbl_usuariosId)));
                 usuario.setEstado(rs.getInt(Utilerias.getPropiedad(Util.tbl_usuariosEstado)));
                 usuario.setNombre(rs.getString(Utilerias.getPropiedad(Util.tbl_usuariosNombre)));
-                usuario.setFechaCreacion(rs.getDate(Utilerias.getPropiedad(Util.tbl_usuariosFechaCreacion)));
+                usuario.setFechaCreacion(new java.util.Date(rs.getDate(Utilerias.getPropiedad(Util.tbl_usuariosFechaCreacion)).getTime()));
                 usuario.setCat_tipousuarioDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_usuarios_cat_tipousuarioId)));
                 return true;
             }

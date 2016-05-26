@@ -10,6 +10,7 @@ import edu.uagro.bo.Cat_NivelBecaBO;
 import edu.uagro.bo.Cat_TipoBecaBO;
 import edu.uagro.bo.Cat_ZonasBO;
 import edu.uagro.bo.Tbl_BecarioBO;
+import edu.uagro.bo.Tbl_DetalleBecarioBO;
 import edu.uagro.dto.Cat_NivelBecaDTO;
 import edu.uagro.dto.Cat_TipoBecaDTO;
 import edu.uagro.dto.Cat_ZonasDTO;
@@ -27,7 +28,8 @@ import javax.faces.view.ViewScoped;
 @ManagedBean (name = "altaBecarioBeans")
 @ViewScoped
 public final class AltaBecarioBeans {
-    private Tbl_BecarioDTO  becarioDTO = new Tbl_BecarioDTO(); 
+    private Tbl_BecarioDTO  becarioDTO;
+//    private Tbl_DetalleBecarioDTO detalleBecarioDTO = new Tbl_DetalleBecarioDTO();            
     List<Tbl_BecarioDTO> lstBecarioDTO = new ArrayList();
     private Cat_NivelBecaDTO nivelBecaDTO;
     private Cat_TipoBecaDTO tipoBecaDTO;
@@ -35,7 +37,7 @@ public final class AltaBecarioBeans {
     private Cat_ZonasDTO zonasDTO; 
     
     public AltaBecarioBeans() {
-        
+        becarioDTO = new Tbl_BecarioDTO();
         nivelBecaDTO = new Cat_NivelBecaDTO();
         tipoBecaDTO = new Cat_TipoBecaDTO();
         detalleBecarioDTO = new Tbl_DetalleBecarioDTO();
@@ -93,7 +95,13 @@ public final class AltaBecarioBeans {
     
     public void altaBecario(){
         Tbl_BecarioBO becarioBO = new Tbl_BecarioBO();
-        //becarioBO.altaBecario(becarioDTO);
+        becarioBO.altaBecario(this.becarioDTO);
+        Tbl_DetalleBecarioBO detalleBecarioBO = new Tbl_DetalleBecarioBO();
+        detalleBecarioBO.altaDetalleBecario(this.detalleBecarioDTO);
+//        System.out.println("Fecha Inicial: "+detalleBecarioDTO.getFechaInicioBeca());
+//        System.out.println("Fecha Final: "+detalleBecarioDTO.getFechaFinBeca());
+//        System.out.println("Fecha Final: "+detalleBecarioDTO.getArea());
+        
     }
     
     public ArrayList<Cat_NivelBecaDTO> obtenerNivelesBeca(){
@@ -106,10 +114,14 @@ public final class AltaBecarioBeans {
        return tipoBecaBO.obtenerDatos();
    }
     
-     public ArrayList<Cat_ZonasDTO> obtenerZonas(){
-         Cat_ZonasBO zonasBO  = new Cat_ZonasBO();
-      return null; //  return zonasBO.obtenerZonas();
-     }
+    public ArrayList<Cat_ZonasDTO> obtenerZonas(){
+        Cat_ZonasBO zonasBO  = new Cat_ZonasBO();
+        return zonasBO.obtenerZonas();
+    }
+    
+    public void obtenerDatosExternosBecario(){
+        detalleBecarioDTO.setTbl_becarioIdDTO(becarioDTO.getId());
+    }
      
     
 }
