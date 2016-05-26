@@ -117,6 +117,7 @@ public class Cat_AnioDAO  {
         try {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, cat_anio.getNombre());
+            ps.setInt(2, cat_anio.getId());
 
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {

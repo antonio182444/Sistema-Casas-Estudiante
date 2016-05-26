@@ -2,9 +2,9 @@ package edu.uagro.dto;
 
 import java.util.Date;
 
-public class Tbl_DetalleBecarioDTO {
+public class Tbl_DetalleBecarioDTO{
     private int id;
-    private Date fecha;
+    private String fecha;
     private int tbl_becarioIdDTO;
     private Date fechaInicioBeca;
     private Date fechaFinBeca;
@@ -15,8 +15,46 @@ public class Tbl_DetalleBecarioDTO {
     private int cat_nivelbecaIdDTO;
     private int cat_tipobecaIdDTO;
     private String observacion;
-    private int estado;
+    private int estado;  
+    
+    private Tbl_BecarioDTO becarioDTO = new Tbl_BecarioDTO();
+    private Cat_NivelBecaDTO nivelBecaDTO = new Cat_NivelBecaDTO();
+    private Cat_TipoBecaDTO tipoBecaDTO = new Cat_TipoBecaDTO();
+    private Cat_ZonasDTO zonasDTO = new Cat_ZonasDTO();
 
+    public Cat_NivelBecaDTO getNivelBecaDTO() {
+        return nivelBecaDTO;
+    }
+
+    public void setNivelBecaDTO(Cat_NivelBecaDTO nivelBecaDTO) {
+        this.nivelBecaDTO = nivelBecaDTO;
+    }
+
+    public Cat_TipoBecaDTO getTipoBecaDTO() {
+        return tipoBecaDTO;
+    }
+
+    public void setTipoBecaDTO(Cat_TipoBecaDTO tipoBecaDTO) {
+        this.tipoBecaDTO = tipoBecaDTO;
+    }
+
+    public Cat_ZonasDTO getZonasDTO() {
+        return zonasDTO;
+    }
+
+    public void setZonasDTO(Cat_ZonasDTO zonasDTO) {
+        this.zonasDTO = zonasDTO;
+    }
+
+    public Tbl_BecarioDTO getBecarioDTO() {
+        return becarioDTO;
+    }
+
+    public void setBecarioDTO(Tbl_BecarioDTO becarioDTO) {
+        this.becarioDTO = becarioDTO;
+    }
+    
+    
     public int getId() {
         return id;
     }
@@ -25,11 +63,11 @@ public class Tbl_DetalleBecarioDTO {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

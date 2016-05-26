@@ -1,7 +1,11 @@
 package edu.uagro.dto;
 
+import java.util.Date;
+import java.util.Map;
+import javax.faces.context.FacesContext;
+
 public class Tbl_BecarioDTO {
-  private int id;
+    private int id;
     private String nombre;
     private String apellidoPat;
     private String apellidoMat;
@@ -9,7 +13,15 @@ public class Tbl_BecarioDTO {
     private String fechaRegistro;
     private String telefono;
     private int estado;
+    
+    public String getFechaRegistro() {
+        return fechaRegistro;
+    }
 
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+    
     public int getId() {
         return id;
     }
@@ -48,14 +60,6 @@ public class Tbl_BecarioDTO {
 
     public void setCurp(String curp) {
         this.curp = curp;
-    }
-
-    public String getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(String fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
     }
 
     public String getTelefono() {

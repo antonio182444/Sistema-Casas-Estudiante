@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputScript name="jquery/jquery.min.js"/>
+        <h:outputScript name="js/Becas_Internas/Tbl_Becario.js"/>
+        <h:outputStylesheet name="css/chosen.css"/>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="./../../template.xhtml">
+            <ui:define name="content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Reactivación Beca</strong></h3>
+                    </div>
+                </div>
+                <h:form id="formReactivacionBeca">                                    
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <fieldset class="fieldset">
+                                <legend><h5><strong>Detalle del Becario</strong></h5></legend>
+                                <table class="table-responsive">
+                                    <tr>
+                                        <td>
+                                            <strong><h:outputLabel value="Numero ID:" for="numeroID"></h:outputLabel></strong>                                  
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{reactivacionBecaBeans.becarioDTO.id}"></h:outputText>
+                                        </td>
+                                        <td>
+                                            <strong><h:outputLabel value="Fecha de Registro:" for="fechaRegistro"></h:outputLabel></strong>                                   
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{reactivacionBecaBeans.becarioDTO.fechaRegistro}"></h:outputText>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong><h:outputLabel value="Nombre:" for="nombre"></h:outputLabel></strong>                                   
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{reactivacionBecaBeans.becarioDTO.nombre} #{reactivacionBecaBeans.becarioDTO.apellidoPat} #{reactivacionBecaBeans.becarioDTO.apellidoMat}"></h:outputText>
+                                        </td>
+                                        <td>
+                                            <strong><h:outputLabel value="Telefono:" for="telefono"></h:outputLabel></strong>                                   
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{reactivacionBecaBeans.becarioDTO.telefono}"></h:outputText>
+                                        </td>                                    
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong><h:outputLabel value="CURP:" for="curp"></h:outputLabel></strong>                                     
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{reactivacionBecaBeans.becarioDTO.curp}"></h:outputText>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group-sm"><h4><label class="label label-danger">Datos Generales de la Beca: </label></h4></div>                  
+                    <h:inputHidden id="auxClaveBecario" value="#{reactivacionBecaBeans.detalleBecarioDTO.tbl_becarioIdDTO}"></h:inputHidden>
+                    <div id="message"></div>
+                    <table class="table-condensed">
+                            <tr>
+                                <td>
+                                    <strong><h:outputLabel value="Nivel *:" for="nivel"/></strong>
+                                </td>
+                                <td>
+                                    <h:selectOneMenu id="cmbxNivelBeca" label="Nivel de la Beca" value="#{reactivacionBecaBeans.detalleBecarioDTO.cat_nivelbecaIdDTO}" class="cmbxnivelbeca form-control">
+                                        <f:selectItem itemLabel="---Seleccione el Nivel de la Beca---" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{reactivacionBecaBeans.obtenerNivelesBeca()}" var="itemNivelBeca"
+                                                       itemLabel="#{itemNivelBeca.nombre}" itemValue="#{itemNivelBeca.id}" />                            
+                                    </h:selectOneMenu>
+                                </td>
+                                <td>
+                                    <strong><h:outputLabel value="Tipo de Beca *:" for="tipoBeca"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:selectOneMenu id="cmbxTipoBeca" label="Tipo de Beca" value="#{reactivacionBecaBeans.detalleBecarioDTO.cat_tipobecaIdDTO}" class="cmbxtipobeca form-control">
+                                        <f:selectItem itemLabel="---Seleccione el Tipo de Beca---" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{reactivacionBecaBeans.obtenerTiposBeca()}" var="itemTipoBeca"
+                                                       itemLabel="#{itemTipoBeca.nombre}" itemValue="#{itemTipoBeca.id}"/>
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><h:outputLabel value="Fecha Inicio de la Beca *:" for="fechaFinal"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:inputText a:type="date" id="txtFechaInicioBeca" value="#{reactivacionBecaBeans.detalleBecarioDTO.fechaInicioBeca}" 
+                                                 class="form-control" label="Fecha Inicio de la Beca">
+                                        <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+                                    </h:inputText>
+                                </td>
+                                <td>
+                                    <strong><h:outputLabel value="Fecha Final de la Beca *:" for="fechaInicial"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:inputText a:type="date" id="txtFechaFinalBeca" value="#{reactivacionBecaBeans.detalleBecarioDTO.fechaFinBeca}" 
+                                                 class="form-control" label="Fecha Final de la Beca">
+                                        <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+                                    </h:inputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><h:outputLabel value="Area *:" for="area"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:inputText id="txtArea" label="Area"  value="#{reactivacionBecaBeans.detalleBecarioDTO.area}" class="form-control" >                                                                              
+                                    </h:inputText>
+                                </td>
+                                <td>
+                                    <strong><h:outputLabel value="Solicitante *:" for="solicitante"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:inputText id="txtSolicitante" label="Solicitante" value="#{reactivacionBecaBeans.detalleBecarioDTO.solicitante}" 
+                                                 class="form-control"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><h:outputLabel value="Adscripción *:" for="adscripción"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:inputText id="txtAdcripcion" label="Adscripción" value="#{reactivacionBecaBeans.detalleBecarioDTO.adscripcion}" 
+                                                 class="form-control"/>
+                                </td>
+                                <td>
+                                    <strong><h:outputLabel value="Zona *:" for="zona"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:selectOneMenu id="cmbxZona" label="Zona" value="#{reactivacionBecaBeans.detalleBecarioDTO.cat_zonasIdDTO}" 
+                                                     class="cmbxzona form-control">
+                                        <f:selectItem itemLabel="---Seleccione la Zona---" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{reactivacionBecaBeans.obtenerZonas()}" var="itemZonas" itemLabel="#{itemZonas.nombre}" 
+                                                       itemValue="#{itemZonas.id}"/>
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><h:outputLabel value="Observaciones :" for="observaciones"></h:outputLabel></strong>
+                                </td>
+                                <td>
+                                    <h:inputTextarea id="txtObservacion" label="Observaciones:" value="#{reactivacionBecaBeans.detalleBecarioDTO.observacion}" class="combobox form-control"/>
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <h:link a:href="#!" type="button" onclick="validarCamposReactivacionBeca(this)"  class="btn btn-primary btn-sm" title="Reactivar Becarios Dados de Baja" id="btnReactivarBecario"><span class="glyphicon glyphicon-floppy-open" aria-hidden="true"> Confirmar</span></h:link>                                                                     
+                                            <h:commandButton style="display: none" id="reactivarBecario" actionListener="#{reactivacionBecaBeans.altaDetalleBecario()}" value="Confirma"></h:commandButton>
+                                        </div>
+                                        <div class="form-group">
+                                            <h:commandButton class="btn btn-danger btn-sm" value="Cancelar" action="#{reactivacionBecaBeans.salida()}"></h:commandButton>                                
+                                        </div>
+                                        
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </table>                                                              
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <h:outputScript name="js/chosen.jquery.js"/>
+        <script>
+           $('.cmbxnivelbeca').chosen();
+           $('.cmbxtipobeca').chosen();
+           $('.cmbxzona').chosen();
+       </script>
+    </h:body>
+</html>

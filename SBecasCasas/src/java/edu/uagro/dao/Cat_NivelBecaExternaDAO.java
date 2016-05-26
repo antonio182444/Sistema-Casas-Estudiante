@@ -120,6 +120,7 @@ public class Cat_NivelBecaExternaDAO {
         try {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, cat_nivelbecaexterna.getNombre());
+            ps.setInt(2, cat_nivelbecaexterna.getId());
 
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {

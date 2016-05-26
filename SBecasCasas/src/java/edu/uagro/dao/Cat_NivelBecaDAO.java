@@ -114,6 +114,7 @@ public class Cat_NivelBecaDAO {
         try {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, cat_nivelbeca.getNombre());
+            ps.setInt(2, cat_nivelbeca.getId());
 
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {

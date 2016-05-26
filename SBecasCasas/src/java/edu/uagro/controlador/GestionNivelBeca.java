@@ -59,9 +59,15 @@ public class GestionNivelBeca {
     
     }
     
-    private void cargarLista(){
+    public void cargarLista(){
         Cat_NivelBecaBO bo = new Cat_NivelBecaBO();
         lista = bo.obtenerDatos();
     }
-
+    
+    public  void editar(Cat_NivelBecaDTO dto){
+        Cat_NivelBecaBO bo = new Cat_NivelBecaBO();
+        bo.editar(dto);
+    }
+    
+    
 }

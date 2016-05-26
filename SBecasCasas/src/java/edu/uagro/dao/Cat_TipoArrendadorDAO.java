@@ -120,6 +120,7 @@ public class Cat_TipoArrendadorDAO {
         try {
             ps = con.prepareStatement(sql.toString());
             ps.setString(1, cat_tipoarrendador.getNombre());
+            ps.setInt(2, cat_tipoarrendador.getId());
 
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {

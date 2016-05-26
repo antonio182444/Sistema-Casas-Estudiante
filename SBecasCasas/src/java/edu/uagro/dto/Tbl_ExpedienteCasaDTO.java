@@ -9,11 +9,39 @@ public class Tbl_ExpedienteCasaDTO {
     private String tbl_representanteMatriculaDTO;
     private int tbl_arrendadorIdDTO;
     private double montoRenta;
+    private double aumento;
+    private double montoTotal;
+    private String montoLetra;
     private String tipoRenta;
     private Date fechaInicio;
     private Date fechaInicialArrendamiento;
     private Date fechaFinalArrendamiento;
     private int estado;
+
+    public double getAumento() {
+        return aumento;
+    }
+
+    public void setAumento(double aumento) {
+        this.aumento = aumento;
+    }
+
+    public double getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
+
+    public String getMontoLetra() {
+        return montoLetra;
+    }
+
+    public void setMontoLetra(String montoLetra) {
+        this.montoLetra = montoLetra;
+    }
+    
 
     public int getEstado() {
         return estado;

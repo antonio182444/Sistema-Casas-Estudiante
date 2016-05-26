@@ -37,7 +37,10 @@ public class Tbl_ExpedienteCasaDAO {
                             Util.tbl_expedientecasa_tbl_arrendadorId,
                             Util.tbl_expedientecasa_tbl_arrendatarioId,
                             Util.tbl_expedientecasa_tbl_casaestudianteClave,
-                            Util.tbl_expedientecasa_tbl_representanteMatricula};
+                            Util.tbl_expedientecasa_tbl_representanteMatricula,
+                            Util.tbl_expedientecasaAumento,
+                            Util.tbl_expedientecasaMontoTotal,
+                            Util.tbl_expedientecasaMontoLetra,};
         Util tabla = Util.tbl_expedientecasa;
         sql = Utilerias.prepareInsert(tabla, columnas);
         try {
@@ -63,6 +66,9 @@ public class Tbl_ExpedienteCasaDAO {
             ps.setInt(7, expedienteCasa.getTbl_arrendatarioIdDTO());
             ps.setInt(8, expedienteCasa.getTbl_casaestudianteClaveDTO());
             ps.setString(9, expedienteCasa.getTbl_representanteMatriculaDTO());
+            ps.setDouble(10, expedienteCasa.getAumento());
+            ps.setDouble(11, expedienteCasa.getMontoTotal());
+            ps.setString(12, expedienteCasa.getMontoLetra());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Creating ExpedienteCasa failed, no rows affected.");
@@ -95,13 +101,16 @@ public class Tbl_ExpedienteCasaDAO {
         Connection con = BDConexion.getConexion();
         PreparedStatement ps;
         StringBuilder sql;
-        Util columna = Util.tbl_expedientecasaId;
+        Util columna[] = {Util.tbl_expedientecasaEstado};
         Util tabla = Util.tbl_expedientecasa;
-        sql = Utilerias.prepareDelete(tabla);
-        sql = Utilerias.concatenarWhere(sql, columna);
+        sql = Utilerias.prepareUpdate(tabla);
+        Util columnaCondicion = Util.tbl_expedientecasaId;
+        sql = Utilerias.concatenarWhere(sql, columnaCondicion);
         try {
+            expedienteCasa.setEstado(0);
             ps = con.prepareStatement(sql.toString());
-            ps.setInt(1, expedienteCasa.getId());
+            ps.setInt(1, expedienteCasa.getEstado());
+            ps.setInt(2, expedienteCasa.getId());
             int filaMod = ps.executeUpdate();
             if (filaMod == 0) {
                 throw new SQLException("Eliminating ExpedienteCasa failed, no rows affected.");
@@ -202,6 +211,9 @@ public class Tbl_ExpedienteCasaDAO {
                             Util.tbl_expedientecasa_tbl_arrendatarioId,
                             Util.tbl_expedientecasa_tbl_casaestudianteClave,
                             Util.tbl_expedientecasa_tbl_representanteMatricula,
+                            Util.tbl_expedientecasaAumento,
+                            Util.tbl_expedientecasaMontoTotal,
+                            Util.tbl_expedientecasaMontoLetra,
                             Util.tbl_expedientecasaEstado};
         Util tabla = Util.tbl_expedientecasa;
         sql = Utilerias.prepareSelect(tabla, columnas);
@@ -221,6 +233,9 @@ public class Tbl_ExpedienteCasaDAO {
                 expedienteCasa.setTbl_arrendatarioIdDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_expedientecasa_tbl_arrendatarioId)));
                 expedienteCasa.setTbl_casaestudianteClaveDTO(rs.getInt(Utilerias.getPropiedad(Util.tbl_expedientecasa_tbl_casaestudianteClave)));
                 expedienteCasa.setTbl_representanteMatriculaDTO(rs.getString(Utilerias.getPropiedad(Util.tbl_expedientecasa_tbl_representanteMatricula)));
+                expedienteCasa.setAumento(rs.getDouble(Utilerias.getPropiedad(Util.tbl_expedientecasaAumento)));
+                expedienteCasa.setMontoTotal(rs.getDouble(Utilerias.getPropiedad(Util.tbl_expedientecasaMontoTotal)));
+                expedienteCasa.setMontoLetra(rs.getString(Utilerias.getPropiedad(Util.tbl_expedientecasaMontoLetra)));
                 expedienteCasa.setEstado(rs.getInt(Utilerias.getPropiedad(Util.tbl_expedientecasaEstado)));
             } else { 
                 expedienteCasa = null;
